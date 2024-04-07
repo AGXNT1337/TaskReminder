@@ -1,0 +1,56 @@
+﻿@model TaskReminder.Models.Tasks
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="pt-4">Edit the task</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" autocomplete="off" maxlength="50" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" autocomplete="off" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskDate" class="control-label"></label>
+                <input asp-for="TaskDate" class="form-control" />
+                <span asp-validation-for="TaskDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotificationBeforeTask" class="control-label"></label>
+                <select asp-for="NotificationBeforeTask" class="form-control">
+                    <option value="1">1 minute before</option>
+                    @for (int i = 2; i <= 29; i++)
+                    {
+                        <option value="@i">@i minutes before</option>
+                    }
+                    <option selected="selected" value="30">30 minutes before</option>
+                    @for (int i = 31; i <= 60; i++)
+                    {
+                        <option value="@i">@i minutes before</option>
+                    }
+                </select>
+                <span asp-validation-for="NotificationBeforeTask" class="text-danger"></span>
+            </div>
+
+            <div class="mt-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ml-5">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

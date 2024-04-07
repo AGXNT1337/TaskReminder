@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TaskReminder.Models.Tasks>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-0 pb-2">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Tasks</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-primary align-text-bottom mt-2">Create Category</a>
+        </div>
+    </div>
+</div>
+<div style="overflow-x: auto;">
+    <table class="table" width="50%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotificationBeforeTask)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TaskDate)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="25%">
+                        @{
+                            string DisplayTitle = (item.Title == null) ? "(No title)" : item.Title;
+                        }
+                        @DisplayTitle
+                    </td>
+                    <td width="30%">
+                        @{
+                            string DisplayDescription = (item.Description == null) ? "(No description)" : item.Description;
+                        }@DisplayDescription
+                    </td>
+                    <td width="15%">
+                        @Html.DisplayFor(modelItem => item.NotificationBeforeTask) minutes before
+                    </td>
+                    <td width="15%">
+                        @Html.DisplayFor(modelItem => item.TaskDate)
+                    </td>
+                    <td width="15%">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
