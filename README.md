@@ -24,7 +24,7 @@ To get started with TaskReminder, follow these steps:
 1. Clone the repository to your local machine.
 2. Set up your development environment and install necessary dependencies.
 3. Configure the database connection string in `appsettings.json`.
-4. Run the database migrations 'Add-Migration "Init"' to create the required tables and run 'Update-Database' to apply the changes to the database.
+4. Run the database migrations `Add-Migration "Init"` to create the required tables and run `Update-Database` to apply the changes to the database.
 5. Build and run the application.
 
 ## License
